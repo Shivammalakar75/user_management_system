@@ -2,7 +2,7 @@
 from pydantic_settings import BaseSettings
 from pydantic import ConfigDict
 
-class Settings(BaseSettings):
+class Settings(BaseSettings): # database related fields
     DB_HOST: str
     DB_PORT: int
     DB_USER: str
@@ -14,6 +14,12 @@ class Settings(BaseSettings):
     ALGORITHM: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
 
-    model_config = ConfigDict(env_file=".env", extra="allow")  # <--- extra fields allow
+    # extra fields allow
+    model_config = ConfigDict(env_file=".env", extra="allow")  
 
 settings = Settings()
+
+# import os
+
+# SMTP_EMAIL = os.getenv("SMTP_EMAIL")
+# SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")

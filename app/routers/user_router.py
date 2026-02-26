@@ -63,3 +63,20 @@ def admin_delete_user(user_id: int, db: Session = Depends(get_db), current_user 
         return UserService.delete_user(db, user_id, current_user)
     except PermissionError as e:
         raise HTTPException(status_code=403, detail=str(e))
+    
+
+# Background Task for sending email at Register user
+# from fastapi import BackgroundTasks
+# from app.email.email_utils import send_welcome_email
+
+# @router.post("/register")
+# def register(user_data: UserCreate,background_tasks: BackgroundTasks,db: Session = Depends(get_db)):
+#     user = UserService.register_user(db, user_data)
+
+#     background_tasks.add_task(
+#         send_welcome_email,
+#         user.email,
+#         user.name
+#     )
+
+#     return user
