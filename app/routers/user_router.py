@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from app.services.user_service import UserService
-from app.schemas.user_schema import UserCreate, UserResponse
+from app.services.user_service import UserService,UserUpdate
+from app.schemas.user_schema import UserCreate, UserResponse,UserRoleUpdate
 from app.core.dependencies import get_current_user
 from app.db.database import get_db
 
@@ -31,7 +31,7 @@ def get_me(current_user = Depends(get_current_user)):
 
 # Update own profile
 @router.patch("/me", response_model=UserResponse)
-def update_me(update_data: dict, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
+def update_me(update_data: UserUpdate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
     return UserService.update_user(db, current_user.id, update_data, current_user)
 
 # Delete own profile
@@ -47,13 +47,14 @@ def get_all_users(db: Session = Depends(get_db), current_user = Depends(get_curr
     except PermissionError as e:
         raise HTTPException(status_code=403, detail=str(e))
 
-# Admin-only: Update any user
-@router.patch("/{user_id}", response_model=UserResponse)
-def admin_update_user(user_id: int, update_data: dict, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
-    try:
-        return UserService.update_user(db, user_id, update_data, current_user)
-    except PermissionError as e:
-        raise HTTPException(status_code=403, detail=str(e))
+@router.patch("/{user_id}/role", response_model=UserResponse)
+def admin_update_user_role(
+    user_id: int,
+    update_data: UserRoleUpdate,
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    return UserService.update_user_role(db, user_id, update_data.role_id, current_user)
 
 # Admin-only: Delete any user
 @router.delete("/{user_id}")
