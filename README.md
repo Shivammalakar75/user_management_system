@@ -44,6 +44,47 @@ Security :-
     > Self-update restriction logic
     > Environment-based secret configuration
 
+Project Structure :-
+=====================
+    user_management_system/
+    │
+    ├── app/
+    │   ├── core/
+    │   │   ├── config.py
+    │   │   ├── dependency.py
+    │   │   └── security.py
+    │   │
+    │   ├── db/
+    │   │   └── database.py
+    │   │
+    │   ├── models/
+    │   │   ├── base.py
+    │   │   ├── role.py
+    │   │   └── user.py
+    │   │
+    │   ├── repositories/
+    │   │   ├── role_repository.py
+    │   │   └── user_repository.py
+    │   │
+    │   ├── routers/
+    │   │   ├── role_router.py
+    │   │   └── user_router.py
+    │   │
+    │   ├── schemas/
+    │   │   ├── role_schema.py
+    │   │   └── user_schema.py
+    │   │
+    │   ├── service/
+    │   │   ├── role_service.py
+    │   │   └── user_service.py
+    │   │
+    │   └── main.py
+    │
+    ├── .env
+    ├── .gitignore
+    ├── README.md
+    └── requirements.txt
+
 
 Registration Flow :-
 ======================
