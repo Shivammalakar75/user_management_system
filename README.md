@@ -85,6 +85,33 @@ Project Structure :-
     ├── README.md
     └── requirements.txt
     
+Database Tables :-   
+====================     
+1. Database Name : user_management_DB    
+2. users table :-     
+| Column     | Type     | Description                  |
+| ---------- | -------- | ---------------------------- |
+| id         | Integer  | Primary Key (Auto Increment) |
+| name       | String   | User full name               |
+| email      | String   | Unique email address         |
+| password   | String   | Hashed password              |
+| role_id    | Integer  | Foreign Key → roles.id       |
+| is_active  | Boolean  | Account active status        |
+| created_at | DateTime | Record creation timestamp    |   
+    
+   
+3. Relationship :-   
+    role_id references roles.id   
+    One role can have multiple users (One-to-Many relationship)    
+       
+4. roles table :-    
+| Column      | Type     | Description                  |
+| ----------- | -------- | ---------------------------- |
+| id          | Integer  | Primary Key (Auto Increment) |
+| name        | String   | Role name (admin / user)     |
+| description | String   | Role description             |
+| created_at  | DateTime | Record creation timestamp    |   
+   
    
 Registration Flow :-   
 ======================    
