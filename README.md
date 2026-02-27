@@ -105,13 +105,14 @@ Database Tables :-
     role_id references roles.id   
     One role can have multiple users (One-to-Many relationship)    
        
-4. roles table :-    
-| Column      | Type     | Description                  |    
-| ----------- | -------- | ---------------------------- |    
-| id          | Integer  | Primary Key (Auto Increment) |    
-| name        | String   | Role name (admin / user)     |    
-| description | String   | Role description             |   
-| created_at  | DateTime | Record creation timestamp    |      
+4. roles table :-   
+
+| Column      | Type     | Description                  |      
+| ----------- | -------- | ---------------------------- |      
+| id          | Integer  | Primary Key (Auto Increment) |      
+| name        | String   | Role name (admin / user)     |     
+| description | String   | Role description             |    
+| created_at  | DateTime | Record creation timestamp    |       
    
 
 Registration Flow :-   
