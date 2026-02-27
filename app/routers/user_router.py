@@ -61,6 +61,8 @@ def admin_update_user_role(
 def admin_delete_user(user_id: int, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
     try:
         return UserService.delete_user(db, user_id, current_user)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
     except PermissionError as e:
         raise HTTPException(status_code=403, detail=str(e))
     
